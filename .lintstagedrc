@@ -1,0 +1,7 @@
+{
+  "*.ts": [
+    "yarn fmt",
+    "yarn lint",
+    "bash -c 'yarn typecheck'"
+  ]
+}
