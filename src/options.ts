@@ -1,7 +1,6 @@
 import { program } from "commander";
 import { version } from "../package.json";
 import * as z from "zod";
-import { exit } from "process";
 
 const BufferEncoding = z.union(
   [
@@ -44,11 +43,17 @@ export function options(argv: string[]) {
     return schema.parse(command.opts());
   } catch (error: unknown) {
     if (error instanceof z.ZodError) {
+      let msg = "Invalid options\n";
       error.issues.forEach((issue) => {
-        console.error("error:", issue.path[0], issue.message);
+        msg += `${issue.path[0]}: ${issue.message}\n`;
       });
-      exit(1);
+      throw new Error(msg);
     }
     throw error;
   }
+}
+export function logZodError(e: z.ZodError) {
+  e.issues.forEach((issue) => {
+    console.error("error:", issue.path[0], issue.message);
+  });
 }
