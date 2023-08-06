@@ -6,6 +6,7 @@ interface UnionType {
   values: string[];
 }
 type Type = StringType | NumberType | BooleanType | UnionType;
+export type Env = [string, string, Type][];``
 /**
  * Parses a string or buffer into an object
  * a. (?:^|^) = start of string or start of line
@@ -19,11 +20,11 @@ type Type = StringType | NumberType | BooleanType | UnionType;
  * f. (?:$|$) = end of string or end of line
  */
 
-export function parse(src: string): [string, string, Type][] {
+export function parse(src: string): Env {
   const LINE =
     /(?:^|^)\s*(?:export\s+)?([\w.-]+)(?:\s*=\s*?|:\s+?)(\s*'(?:\\'|[^'])*'|\s*"(?:\\"|[^"])*"|\s*`(?:\\`|[^`])*`|[^#\r\n]+)?\s*(#.*)?(?:$|$)/gm;
 
-  const arr: [string, string, Type][] = [];
+  const arr: Env = [];
 
   let lines = src.toString();
   // Normalize line endings

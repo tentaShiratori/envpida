@@ -1,4 +1,6 @@
 import { options } from "./options";
+import {describe,it,expect} from "vitest"
+
 describe("options", () => {
   it("should parse", () => {
     const input = ["", "", "--path", "path", "--encoding", "utf8"];
