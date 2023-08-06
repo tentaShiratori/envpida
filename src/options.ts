@@ -29,15 +29,15 @@ const schema = z.object({
   path: z.string(),
   encoding: BufferEncoding,
 });
-const argParser = program
-  .name("envpida")
-  .description("TypeScript friendly typed environment variables")
-  .version(version)
-  .option("-p, --path <path>", "Path to .env file", ".env")
-  .option("--encoding <encode>", "Encode of .env file", "utf8");
 
 export type Options = z.infer<typeof schema>;
 export function options(argv: string[]) {
+  const argParser = program
+    .name("envpida")
+    .description("TypeScript friendly typed environment variables")
+    .version(version)
+    .option("-p, --path <path>", "Path to .env file", ".env")
+    .option("--encoding <encode>", "Encode of .env file", "utf8");
   const command = argParser.parse(argv);
   try {
     return schema.parse(command.opts());

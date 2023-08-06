@@ -12,7 +12,7 @@ describe("options", () => {
   it("should parse with default", () => {
     const input = ["", ""];
     const expected = {
-      path: "path",
+      path: ".env",
       encoding: "utf8",
     };
     const actual = options(input);

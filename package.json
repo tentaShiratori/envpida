@@ -5,7 +5,7 @@
   "repository": "https://github.com/tentaShiratori/envpida.git",
   "author": "tentaShiratori <tenta.shiratori@gmail.com>",
   "license": "MIT",
-  "types": "dist/cli.d.ts",
+  "types": "dist/src/cli.d.ts",
   "bin": "bin/index.js",
   "scripts": {
     "dev": "npm run build && node ./bin/index.js",
